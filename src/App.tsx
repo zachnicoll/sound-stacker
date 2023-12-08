@@ -11,7 +11,7 @@ import { SoundStackProvider } from "./store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/sound-stacker">
       <Route index element={<Home />} />
     </Route>
   )
