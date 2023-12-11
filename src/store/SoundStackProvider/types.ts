@@ -6,6 +6,7 @@ export type Source = {
   volume?: number;
   title?: string;
   author?: string;
+  loop?: boolean;
 };
 
 export type SoundStackState = {
@@ -24,6 +25,10 @@ export type SoundStackAction =
   | {
       type: "UPDATE_PLAYER";
       payload: { sourceId: string; value: YouTubePlayer };
+    }
+  | {
+      type: "TOGGLE_LOOP";
+      payload: { sourceId: string };
     }
   | {
       type: "REMOVE_SOURCE";

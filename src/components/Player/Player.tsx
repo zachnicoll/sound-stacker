@@ -11,6 +11,7 @@ import {
   Pane,
   Strong,
   VolumeUpIcon,
+  RepeatIcon,
 } from "evergreen-ui";
 import { ChangeEventHandler, useState } from "react";
 import YouTube, { YouTubeEvent } from "react-youtube";
@@ -64,6 +65,11 @@ const Player: React.FC<PlayerProps> = ({ source, onDelete }) => {
     });
   };
 
+  const handleLoop = (): void => {
+    if (!source.player) return;
+    if (source.loop) source.player.playVideo();
+  };
+
   return (
     <Card
       display="flex"
@@ -76,6 +82,7 @@ const Player: React.FC<PlayerProps> = ({ source, onDelete }) => {
         videoId={source.sourceId}
         onReady={onReady}
         onStateChange={(e) => setPlayerState(e.target.getPlayerState())}
+        onEnd={handleLoop}
         className="invisible-player"
         onError={console.info}
       />
@@ -113,6 +120,18 @@ const Player: React.FC<PlayerProps> = ({ source, onDelete }) => {
                 onClick={playPause}
                 icon={playerState !== 1 ? <PlayIcon /> : <PauseIcon />}
               />
+
+              <IconButton
+                onClick={() =>
+                  dispatchSoundStack({
+                    type: "TOGGLE_LOOP",
+                    payload: { sourceId: source.sourceId },
+                  })
+                }
+                icon={<RepeatIcon />}
+                intent={source.loop ? "success" : "none"}
+              />
+
               <IconButton
                 onClick={onDelete}
                 icon={DeleteIcon}

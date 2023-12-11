@@ -23,6 +23,19 @@ const soundStackReducer = (state: SoundStackState, action: SoundStackAction) =>
           const { title, author } = s.player.getVideoData();
           s.title = title;
           s.author = author;
+          s.loop = !!s.loop;
+        }
+
+        break;
+      }
+
+      case "TOGGLE_LOOP": {
+        const s = draft.sources.find(
+          (s) => s.sourceId === action.payload.sourceId
+        );
+
+        if (s) {
+          s.loop = !s.loop;
         }
 
         break;

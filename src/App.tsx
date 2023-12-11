@@ -17,15 +17,6 @@ const router = createBrowserRouter(
   )
 );
 
-// const DEFAULT_SOURCES = [
-//   // https://www.youtube.com/watch?v=4vIQON2fDWM
-//   "4vIQON2fDWM",
-//   // https://www.youtube.com/watch?v=FMxj-zHfZbw
-//   "FMxj-zHfZbw",
-//   // https://www.youtube.com/watch?v=Mm1FAYn8dOc
-//   "Mm1FAYn8dOc",
-// ];
-
 function App() {
   return (
     <ThemeProvider value={defaultTheme}>
